@@ -181,6 +181,6 @@ target_default|Boolean|Indicativo de inadiplêmcia sobre a pessoa ter ou não pa
 ### Previsões do modelo
 Coluna|Tipo|Descrição
 ---|---|---
-risk_prediction|Bool|Previsão de risco dada pelo modelo
+risk_prediction|Float|Previsão de risco dada pelo modelo
 spend_prediction|Float|Previsão de gastos dada pelo modelo
 
