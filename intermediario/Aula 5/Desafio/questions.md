@@ -6,13 +6,13 @@
   - [O Processo de aprovação](#o-processo-de-aprovacao)
 - [Tarefas](#tarefas)
   - [Análise Exploratória](#analise-exploratoria)
-  - [Modelagem](#modelagem)
     - [Risco de Crédito](#risco-de-credito)
 	  - [Propensão a gasto](#propensa-a-gasto)
   - [Resolvendo um problema de negócio](#resolvedo-um-problema-de-negocio)
 - [Arquivos](#arquivos)
 - [O que esperamos das equipes?](#o-que-esperamos-das-equipes)
 - [Para casa](#para-casa)
+  - [Modelagem](#modelagem)
 - [Os dados](#os-dados)
 
 ## Introdução
@@ -31,31 +31,10 @@ Resumidamente, o processo funciona mais ou menos assim:
 
 ### Análise Exploratória
 
-1. A inadimplência é o aspecto mais sensível quando se fala em crédito. Faça algumas visualizações que explorem a inadimplência na base fornecida.
+1. A inadimplência é o aspecto mais sensível quando se fala em crédito (target_default). Faça algumas visualizações que explorem a inadimplência na base fornecida.
 
-2. Analisando a distribuição do volume de compras em 3 meses dos clientes (variável pv_3m), você diria que ela segue uma distribuição normal? Há algo de estranho nela? Se sim, qual seria a justificativa ou hipótese para tal?
+2. Analisando a distribuição do volume de compras em 3 meses dos clientes (variável "spends"), você diria que ela segue uma distribuição normal? Há algo de estranho nela? Se sim, qual seria a justificativa ou hipótese para tal?
 
-### Modelagem
-
-Para a análise em questão serão necessários dois modelos, um modelo para previsão de inadimplencia e um segundo modelo para previsão de gastos dos clientes. 
-
-#### Risco de Crédito
-
-Faça um modelo para prever o risco de inadimplência de um cliente utilizando apenas dados de acquisição, ou seja, apenas dados que são conhecidos na fase de aplicação deste. Lembre-se que o limite inicial é definido após o cliente ser aceito.
-
-
-#### Propensão a Gasto
-
-Faça um modelo que seja capaz de distinguir clientes de acordo com a sua propensão de gasto. Você é livre para transformar esse problema em regressào, classificação, não supervisionado e etc, contanto que ao final consiga distinguir qual cliente tende a gastar mais.
-
-Para a construção do modelo, algumas questões relevantes a serem tratadas:
-- O que se está tentando prever?
-- Qual foi o target (variável alvo) escolhido? Se optou-se por um modelo não supervisionado, qual o motivo?
-- Quais variáveis foram selecionadas e qual foi o critério de seleção?
-- Quais as variáveis mais importantes do seu modelo?
-- Quais métricas foram selecionadas para a validação do modelo? O que cada uma delas significa de acordo com o contexto do que se está tentando prever? Quais evidências te fariam crer ou não de que a performance de validação será a mesma de quando este modelo estiver rodando de fato com novos dados?
-
-Durante a aula, os dois modelos serão fornecidos para que os alunos foquem no desafio de negócio, fica como lição de casa tentar treinar os modelos e chegar em uma performance boa considerando as métricas relevantes. 
 
 ### Resolvendo um problema de negócio
 
@@ -81,7 +60,7 @@ Resumindo as informações descritas anteriormente (elas não precisam ser obrig
 |          Custo operacional                   |  10.0|
 |          Inflação mensal                     |  1%  |
 
-Um negócio é feito de decisões e é preciso definir como os dados serão usados para ajudar na tomada de decisão. **O desafio consiste em usar os dois modelos para construir uma política para decidir:**
+Um negócio é feito de decisões e é preciso definir como os dados serão usados para ajudar na tomada de decisão. Para isso serão fornecidos dados simulados de clientes usando o cartão de crédito, bem como dois modelos de previsão, um de risco e outro de gastos. **O desafio consiste em usar os dois modelos para construir uma política para decidir:**
 1. Se o cliente deve ser aprovado ou não.
 2. Qual o limite inicial que esse cliente deve receber.
 
@@ -94,11 +73,12 @@ Criem um notebook e discutam em grupo algumas possiveis solucões, trabalhem com
 ## Arquivos
 
 - `questions.md`: este arquivo, contém a descrição do desafio e a explicação do problema;
+- `Solution-template.ipynb`: Python notebook para ser usado como base para criação das analises
 - /data
-  - `acquisition_train.csv`: dados de aquisição, informações que sabemos das pessoas no momento que elas aplicam, contém o target de default, contém também uma previsão de risco (inadimplêmcia para esses clientes);
-  - `acquisition_test.csv`: dados de aquisição, mas sem as variáveis alvo de default, contém também uma previsão de risco (inadimplêmcia para esses clientes);
-  - `spend_train.csv`: dados comportamentais dos clientes do conjunto de treino contém também uma previsão de gastos para esses clientes;
-  - `spend_test.csv`: dados comportamentais para os clientes do conjunto de teste contém também uma previsão de gastos para esses clientes;;
+  - `policy_dataset.csv`, é a base que vamos trabalhar em cima durante o exercicio em questão, ela contém: 
+    - dados de aquisição: Informações que sabemos das pessoas no momento que elas aplicam
+    - dados de comportamento: Dados de como o cliente utilizou o cartão após ser aprovado para o cartão
+    - previsões dos modelos: Previsões de gastos e risco de dois modelos treinados (spend_prediction e risk_prediction)
 
 ## O que esperamos das equipes?
 
@@ -114,15 +94,32 @@ Para guiar os times, damos algumas dicas de como montar a política:
 
 Para casa, fica o desafio de construir os modelos de risco e gastos que foram dados prontos para o desafio.
 
+### Modelagem
+
+
+Durante a aula, os dois modelos serão fornecidos para que os alunos foquem no desafio de negócio, fica como lição de casa tentar treinar os modelos e chegar em uma performance boa considerando as métricas relevantes. 
+
+Para a análise em questão serão necessários dois modelos, um modelo para previsão de inadimplencia e um segundo modelo para previsão de gastos dos clientes. 
+
+#### Risco de Crédito
+
+Faça um modelo para prever o risco de inadimplência de um cliente utilizando apenas dados de acquisição, ou seja, apenas dados que são conhecidos na fase de aplicação deste. Lembre-se que o limite inicial é definido após o cliente ser aceito.
+
+
+#### Propensão a Gasto
+
+Faça um modelo que seja capaz de distinguir clientes de acordo com a sua propensão de gasto. Você é livre para transformar esse problema em regressào, classificação, não supervisionado e etc, contanto que ao final consiga distinguir qual cliente tende a gastar mais.
+
+Para a construção do modelo, algumas questões relevantes a serem tratadas:
+- O que se está tentando prever?
+- Qual foi o target (variável alvo) escolhido? Se optou-se por um modelo não supervisionado, qual o motivo?
+- Quais variáveis foram selecionadas e qual foi o critério de seleção?
+- Quais as variáveis mais importantes do seu modelo?
+- Quais métricas foram selecionadas para a validação do modelo? O que cada uma delas significa de acordo com o contexto do que se está tentando prever? Quais evidências te fariam crer ou não de que a performance de validação será a mesma de quando este modelo estiver rodando de fato com novos dados?
+
 ## Os dados
 
 **ATENÇãO**: Todos os dados utilizados no desafio são fictícios!
-
-Há 2 tipos de dado sobre os clientes: acquisição e comportamento:
-
-- `acquisition_train.csv` e `acquisition_test.csv` são os conjuntos de treino e teste com os dados de acquisição, neles você encontrará os targets para default (inadimplência) e fraud;
-- `spends_train.csv` e `spends_test.csv`: contém o comportamento dos usuários pelos seus gastos;
-
 
 ### Dados de acquisição
 
@@ -169,8 +166,6 @@ external_data_provider_credit_checks_last_month|Int|Quantidade de consultas de c
 external_data_provider_credit_checks_last_2_year|Int|Quantidade de consultas de crédito na janela de dois anos
 application_time_in_funnel|Int|Tempo gasto pelo aplicante durante o processo de aplicação
 application_time_applied|Date|Horário de aplicação
-<!-- credit_limit|Float|Crédito inicial dado para o aplicante caso aceito. *Atenção*: essa variável é uma decisão tomada e não inerente ao aplicante. Portanto, verifique se faz sentido adicioná-la ao seu modelo -->
-target_default|Int\Indicativo de default
 
 ### Dados de comportamento
 
@@ -181,5 +176,11 @@ credit_line|Int|Limite do cartão
 month|Int|Ordenação dos meses que a pessoa é cliente, sendo 0 o primeiro mês dela como cliente
 spend|Float|Valor gasto naquele mês
 revolving_balance|Float|Valor que o cliente não pagou da fatura atual e que irá rolar para a próxima
-card_request|Int|Se o cliente solicitou uma nova via do cartão (ou a primeira)
-minutes_cs|Float|Quantidade de minutos utilizados do serviço de atendimento ao consumidor
+target_default|Boolean|Indicativo de inadiplêmcia sobre a pessoa ter ou não pago a fatura do cartão
+
+### Previsões do modelo
+Coluna|Tipo|Descrição
+---|---|---
+risk_prediction|Previsão de risco dada pelo modelo
+spend_prediction|Previsão de gastos dada pelo modelo
+
