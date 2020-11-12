@@ -12,7 +12,7 @@
   - [Resolvendo um problema de negócio](#resolvedo-um-problema-de-negocio)
 - [Arquivos](#arquivos)
 - [O que esperamos das equipes?](#o-que-esperamos-das-equipes)
-- [Para casa] (#para-casa)
+- [Para casa](#para-casa)
 - [Os dados](#os-dados)
 
 ## Introdução
@@ -31,7 +31,7 @@ Resumidamente, o processo funciona mais ou menos assim:
 
 ### Análise Exploratória
 
-1. A inadimplência é o aspecto mais sensível quando se fala em crédito. Faça três visualizações que explorem a inadimplência na base fornecida.
+1. A inadimplência é o aspecto mais sensível quando se fala em crédito. Faça algumas visualizações que explorem a inadimplência na base fornecida.
 
 2. Analisando a distribuição do volume de compras em 3 meses dos clientes (variável pv_3m), você diria que ela segue uma distribuição normal? Há algo de estranho nela? Se sim, qual seria a justificativa ou hipótese para tal?
 
