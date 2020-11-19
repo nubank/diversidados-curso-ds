@@ -31,10 +31,10 @@ OUTPUT_FNAME = PATH / 'scores.csv'
 
 
 # Load model pickle
-logging.info(f'Reading model from {MODEL_FNAME}...')
+logger.info(f'Reading model from {MODEL_FNAME}...')
 with MODEL_FNAME.open(mode='rb') as model:
     clf = pickle.load(model)
-logging.info('Done!')
+logger.info('Done!')
 
 # Get "random" features and IDs
 logger.info('Reading features...')
