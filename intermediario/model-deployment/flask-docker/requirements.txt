@@ -1,4 +1,4 @@
 Flask==1.1.2
-gevent==20.9.0
+gevent==23.9.1
 pandas==1.1.4
 scikit-learn==0.23.2
